@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {%  block content %}
+<p>{{ errors }}</p>
+{% if result!=None %}
+    <p>Double your number is {{ result }}</p>
+{% endif %}
 <form method="post" action=".">
-    <input type="number">
-    <input type="submit" class="btn" value="Write lines">
+    <input type="number" name="number">
+    <input type="submit" class="btn" name="action" value="Double it">
 </form>
 {% endblock %}
