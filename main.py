@@ -4,7 +4,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "<header>Index page</header>"
+    return render_template('base.html')
+
+@app.route("/split")
+def split():
+    return render_template('split.html')
+
+@app.route("/about")
+def about():
+    return render_template('about.html')
 
 @app.route("/hello")
 def hello():
@@ -13,4 +21,3 @@ def hello():
 @app.route("/hello/<name>")
 def greeting(name=None):
     return render_template('greeting.html', name=name)
-

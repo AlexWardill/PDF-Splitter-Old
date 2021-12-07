@@ -1,6 +1,5 @@
-my_file = open("important-information.txt", "w+")
-
-for i in range(10):
-    my_file.write("These boots were made for walking")
-
-my_file.close()
+def write_n_lines(n):
+    my_file = open("n-lines.txt", "w+")
+    for i in range(n):
+        my_file.write(f"Line {n}")
+    my_file.close()
