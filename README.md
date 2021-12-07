@@ -1,0 +1,3 @@
+# Test application to call a python script from button click
+Will use this practice to develop a simple app to split pdfs into single pages
+Also a little refresher on Flask because it's been a while...

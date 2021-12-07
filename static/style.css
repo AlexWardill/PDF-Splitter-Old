@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind&family=Poppins:wght@200;300&display=swap');
+
+html {
+    font-family: 'Hind', sans-serif;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(55, 102, 189);
+    color: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
