@@ -1,8 +1,9 @@
 from flask import Flask, render_template
+from simple import write_n_lines
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
     return render_template('base.html')
 
@@ -14,10 +15,6 @@ def split():
 def about():
     return render_template('about.html')
 
-@app.route("/hello")
-def hello():
-    return "<p>Hello, World!</p>"
-
-@app.route("/hello/<name>")
-def greeting(name=None):
-    return render_template('greeting.html', name=name)
+@app.route("/write-lines")
+def writeLines():
+    return
