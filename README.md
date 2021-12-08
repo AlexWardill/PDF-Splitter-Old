@@ -1,3 +1,9 @@
-# Test application to call a python script from button click
-Will use this practice to develop a simple app to split pdfs into single pages
-Also a little refresher on Flask because it's been a while...
+# Flask application calls external python module
+A little mini project - a Flask refresher
+Warming up for a PDF splitter application.
+
+- Refreshed memory on http methods, basic routing and jinja2 syntax.
+- Learned to use Flask.session to keep track of variables.
+
+## to do
+- [ ] Clear result display on page reload.
