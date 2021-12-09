@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, make_response, redirect, url_
 from werkzeug.utils import secure_filename
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
+from pathlib import Path
 from Splitter import pdfSplitter
 
 app = Flask(__name__)
@@ -34,8 +35,12 @@ def upload_file():
             for i in range(big_pdf.getNumPages()):
                 pdf_writer = PdfFileWriter()
                 pdf_writer.addPage(big_pdf.getPage(i))
-                filename = secure_filename(f"page {i+1} {file.filename}")
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                # filename = secure_filename(f"page {i+1} {file.filename}")
+                # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                
+                with Path(os.path.join(Path.home(), f"Downloads", f"page {i+1} {file.filename}")).open(mode="wb") as output_file:
+                    pdf_writer.write(output_file)
+                    
             return redirect(url_for('upload_file'))
     return render_template('split.html')
 
