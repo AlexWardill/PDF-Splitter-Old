@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, make_response, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 import os
+from PyPDF2 import PdfFileReader, PdfFileWriter
 from Splitter import pdfSplitter
 
 app = Flask(__name__)
@@ -17,17 +18,24 @@ def allowed_file(filename):
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
     if request.method == 'POST':
-        # check if the post request has the file part
+        # Check if user has uploaded a file
         if 'file' not in request.files:
             flash('No file part')
             return redirect(request.url)
+        # define file variable
         file = request.files['file']
+        # check if file has non-empty file name
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
+        # save inddividual pages from big_pdf
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            big_pdf = PdfFileReader(file)
+            for i in range(big_pdf.getNumPages()):
+                pdf_writer = PdfFileWriter()
+                pdf_writer.addPage(big_pdf.getPage(i))
+                filename = secure_filename(f"page {i+1} {file.filename}")
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('upload_file'))
     return render_template('split.html')
 
