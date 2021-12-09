@@ -12,15 +12,17 @@ def pdfSplitter(target_pdf):
 
     
     for i in range(input_pdf.getNumPages()):
-        pdf_writer = PdfFileWriter()
-        response = pdf_writer.addPage(input_pdf.getPage(i))
+        response = PdfFileWriter()
+        response.addPage(input_pdf.getPage(i))
         response.headers["Content-Disposition"] = f"attachment; filename={filename}"
+        print(response)
         return response
     # for i in range(input_pdf.getNumPages()):
     #     pdf_writer = PdfFileWriter()
     #     pdf_writer.addPage(input_pdf.getPage(i))
     #     with Path(f"Downloads/{target_pdf} page {i+1}.pdf").open(mode="wb") as output_file:
     #         pdf_writer.write(output_file)
+    #         print(pdf_writer)
     # return 0
 
     # return render_template('split.html')
