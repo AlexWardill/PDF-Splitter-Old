@@ -1,23 +1,35 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for
+from flask import Flask, render_template, request, make_response, redirect, url_for, flash
+from werkzeug.utils import secure_filename
+import os
 from Splitter import pdfSplitter
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 app.config["SECRET_KEY"] = "mvgtwiey4528wivndt6r89wjsnzgsoru56"
+UPLOAD_FOLDER = "C:/Users/User/Downloads"
+ALLOWED_EXTENSIONS = {'pdf'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route("/")
-def split():
-    return render_template('split.html')
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route("/", methods=["GET", "POST"])
-def split_file():
-    if request.method == "POST":
-        the_request = request.files
-        print(f"request IS {the_request}")
-        # input_file = request.files["input_file"]
-        # pdfSplitter(file)
-    return redirect(url_for('split'))
-
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('upload_file'))
+    return render_template('split.html')
 
 
 @app.route("/about")
