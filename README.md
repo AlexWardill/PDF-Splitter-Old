@@ -8,12 +8,8 @@ Developing a small application to easily split pdfs into individual pages.
 University printing only easily allows for double sided printing for students...
 This is impractical when printing out lots of music.
 
-### Queries
-Not sure if anything like this exists easily but can't hurt to make another...
-
-
 # To Do
 - [ ] Colors
 - [ ] Footer
-- [ ] host online
+- [ ] Host online
 
