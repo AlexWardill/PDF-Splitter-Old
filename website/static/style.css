@@ -64,6 +64,36 @@ input[type=file] {
     width: auto;
 }
 
+h1 {
+    font-size: 2.3em;
+    margin-bottom: .4em;
+    text-decoration: rgb(216, 58, 58) underline;
+    text-underline-offset: 3px;
+}
+
+#h1-split {
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 1.2em;
+    color: rgb(230, 230, 230);
+}
+
+.underline {
+    width: 400px;
+    height: 4px;
+    background-color: rgb(201, 57, 57);
+    margin-top: 1em;
+}
+
+.bottom-p {
+    margin-top: 1em;
+    color: rgb(230, 230, 230);
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
 .btn {
     border-radius: 10px;
     background-color: rgb(216, 58, 58);
@@ -85,7 +115,7 @@ footer {
     bottom: 0;
     width: 100%;
     height: 60px;
-    background-color: rgb(200, 200, 228);
+    background-color: rgb(173, 173, 211);
     color: black;
     font-weight: 600;
     font-size: 1.3em;
