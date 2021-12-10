@@ -10,13 +10,6 @@ def pdfSplitter(target_pdf):
     )
     input_pdf = PdfFileReader(str(pdf_path))
 
-    
-    # for i in range(input_pdf.getNumPages()):
-    #     response = PdfFileWriter()
-    #     response.addPage(input_pdf.getPage(i))
-    #     response.headers["Content-Disposition"] = f"attachment; filename={filename}"
-    #     print(response)
-    #     return response
     for i in range(input_pdf.getNumPages()):
         pdf_writer = PdfFileWriter()
         pdf_writer.addPage(input_pdf.getPage(i))

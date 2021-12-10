@@ -22,6 +22,7 @@ Also I'm not sure if anything like this exists easily but can't hurt to make ano
 
 
 # To Do
-- [ ] Integrate with Web App
-  - [ ]  Specify input and output file paths
+- [ ] Host live demo on pages
+- [ ] Write about page
+- [ ] host online
 
