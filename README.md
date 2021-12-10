@@ -1,6 +1,5 @@
 # Flask application calls external python module
 Split PDF into single pages and download into folder
-[ Live Demo ](https://alexwardill.github.io/PDF-Splitter/)
 
 # pdf-splitter
 Developing a small application to easily split pdfs into individual pages.
