@@ -11,5 +11,7 @@ This is impractical when printing out lots of music.
 # To Do
 - [ ] Colors
 - [ ] Footer
+- [ ] Research file structure
 - [ ] Host online
+
 
