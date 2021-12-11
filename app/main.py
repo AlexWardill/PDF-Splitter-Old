@@ -6,8 +6,6 @@ from pathlib import Path
 from Splitter import pdfSplitter
 
 app = Flask(__name__)
-app.config["DEBUG"] = True
-app.config["SECRET_KEY"] = "mvgtwiey4528wivndt6r89wjsnzgsoru56"
 UPLOAD_FOLDER = "C:/Users/User/Downloads"
 ALLOWED_EXTENSIONS = {'pdf'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
