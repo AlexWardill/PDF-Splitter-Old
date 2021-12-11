@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from pathlib import Path
-from Splitter import pdfSplitter
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "C:/Users/User/Downloads"
