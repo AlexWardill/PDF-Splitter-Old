@@ -35,8 +35,8 @@ def upload_file():
                 # filename = secure_filename(f"page {i+1} {file.filename}")
                 # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
                 
-                with Path(os.path.join(Path.home(), f"Downloads", f"page {i+1} {file.filename}")).open(mode="wb") as output_file:
-                    pdf_writer.write(output_file)
+                with Path(os.path.join(Path.home(), f"Downloads")).open(mode="wb") as output_file:
+                    pdf_writer.write(output_file  + f"page {i+1} {file.filename}")
                     
             return redirect(url_for('upload_file'))
     return render_template('split.html')
