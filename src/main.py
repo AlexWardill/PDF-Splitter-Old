@@ -4,9 +4,12 @@ import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from pathlib import Path
 
+
 app = Flask(__name__)
 UPLOAD_FOLDER = "C:/Users/User/Downloads"
 ALLOWED_EXTENSIONS = {'pdf'}
+secret_key = os.urandom(12).hex()
+app.config['SECRET_KEY'] = secret_key
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
