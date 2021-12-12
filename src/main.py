@@ -35,10 +35,9 @@ def upload_file():
             for i in range(big_pdf.getNumPages()):
                 pdf_writer = PdfFileWriter()
                 pdf_writer.addPage(big_pdf.getPage(i))
-                # filename = secure_filename(f"page {i+1} {file.filename}")
-                # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                blank_file = PdfFileWriter()
-                with Path(os.path.join(Path.home(), f"Downloads", f"{blank_file}")).open(mode="wb") as output_file:
+                
+                # CREATE BLANK PDF IN DOWNLOADS FOLDER, THEN SET IT AS OUTPUT FILE
+                with Path(os.path.join(Path.home(), f"Downloads", f"page {i+1}")).open(mode="wb") as output_file:
                     pdf_writer.write(output_file)
                     
             return redirect(url_for('upload_file'))
