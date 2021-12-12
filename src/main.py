@@ -37,7 +37,7 @@ def upload_file():
                 pdf_writer.addPage(big_pdf.getPage(i))
                 
                 # CREATE BLANK PDF IN DOWNLOADS FOLDER, THEN SET IT AS OUTPUT FILE
-                with Path(os.path.join(Path.home(), f"Downloads", f"page {i+1}")).open(mode="wb") as output_file:
+                with Path(os.path.join(Path.home(), f"Downloads", f"page {i+1}.pdf")).open(mode="wb") as output_file:
                     pdf_writer.write(output_file)
                     
             return redirect(url_for('upload_file'))
