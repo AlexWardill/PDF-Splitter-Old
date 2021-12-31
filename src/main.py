@@ -46,8 +46,11 @@ def upload_file():
                 # CREATE BLANK PDF IN DOWNLOADS FOLDER, THEN SET IT AS OUTPUT FILE
                 # not accessing the actual Downloads path
                     # instead it's getting app/Downloads...
-                            
-                with Path(os.path.join(root_path, "downloaded"), f"page {i+1}.pdf").open(mode="wb+") as output_file:
+
+                # WHY IS THIS NOT JOINING TO DOWNLOADED
+                # No such file or directory: '/app/src/page 1.pdf'
+                # ...but I've literally joined it to "downloaded" so why is it trying to open there...
+                with Path(Path.home(), "downloaded", f"page {i+1}.pdf").open(mode="wb+") as output_file:
                     pdf_writer.write(output_file)
 
                 send_file(f"page {i+1}.pdf", as_attachment=True)
