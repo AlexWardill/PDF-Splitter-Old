@@ -21,9 +21,9 @@ root_path = Path.home()
 
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
-    filelist = [ f for f in os.listdir(os.path.join(root_path,"src", "downloaded")) if not f.endswith(".txt") ]
+    filelist = [ f for f in os.listdir(os.path.join(root_path, "src", "downloaded")) if not f.endswith(".txt") ]
     for f in filelist:
-        os.remove(os.path.join(os.path.dirname(), os.path.join("downloaded", f)))
+        os.remove(os.path.join(root_path, "src", os.path.join("downloaded", f)))
 
     if request.method == 'POST':
         # Check if user has uploaded a file
@@ -47,7 +47,7 @@ def upload_file():
                 # not accessing the actual Downloads path
                     # instead it's getting app/Downloads...
                             
-                with Path(os.path.join(os.path.dirname(), f"downloaded", f"page {i+1}.pdf")).open(mode="wb") as output_file:
+                with Path(os.path.join(root_path, "src", f"downloaded", f"page {i+1}.pdf")).open(mode="wb") as output_file:
                     pdf_writer.write(output_file)
 
                 send_file(f"page {i+1}.pdf", as_attachment=True)
