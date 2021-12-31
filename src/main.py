@@ -47,7 +47,7 @@ def upload_file():
                 # not accessing the actual Downloads path
                     # instead it's getting app/Downloads...
                             
-                with Path(os.path.join(Path.home(), "src", "downloaded", f"page {i+1}.pdf")).open(mode="wb+") as output_file:
+                with Path(os.path.join(Path.home(), os.path.join("src", "downloaded"), f"page {i+1}.pdf")).open(mode="wb+") as output_file:
                     pdf_writer.write(output_file)
 
                 send_file(f"page {i+1}.pdf", as_attachment=True)
