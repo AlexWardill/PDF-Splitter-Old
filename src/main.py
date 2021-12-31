@@ -17,7 +17,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-root_path = os.path.join(Path.home(), "src")
+root_path = Path.home()
 
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
