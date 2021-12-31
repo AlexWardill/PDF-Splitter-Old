@@ -17,13 +17,13 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-root_path = Path.home()
+root_path = os.path.join(Path.home(), "src")
 
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
-    filelist = [ f for f in os.listdir(os.path.join(root_path, "src", "downloaded")) if not f.endswith(".txt") ]
+    filelist = [ f for f in os.listdir(os.path.join(root_path, "downloaded")) if not f.endswith(".txt") ]
     for f in filelist:
-        os.remove(os.path.join(root_path, "src", "downloaded", f"{f}" ))
+        os.remove(os.path.join(root_path, "downloaded", f"{f}" ))
 
     if request.method == 'POST':
         # Check if user has uploaded a file
