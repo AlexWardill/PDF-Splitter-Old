@@ -51,10 +51,10 @@ def upload_file():
                 # WHY IS THIS NOT JOINING TO DOWNLOADED
                 # No such file or directory: '/app/src/page 1.pdf'
                 # but I've not even specified src anywhere, so why is it still trying to join
-                with Path(Path.home(), "src", "downloaded", f"page {i+1}.pdf").open(mode="wb+") as output_file:
+                with Path(os.path.join(Path.home(), "src", "downloaded", f"page {i+1}.pdf")).open(mode="wb+") as output_file:
                     pdf_writer.write(output_file)
 
-                send_file(f"page {i+1}.pdf", as_attachment=True)
+                send_file(os.path.join(Path.home("src", "downloads", f"page {i+1}.pdf")), as_attachment=True)
                     
             return redirect(url_for('upload_file'))
     return render_template('split.html')
