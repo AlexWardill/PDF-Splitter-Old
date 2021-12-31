@@ -21,7 +21,7 @@ root_path = Path.home()
 
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
-    filelist = [ f for f in os.listdir(os.path.join(root_path, "downloaded")) ]
+    filelist = [ f for f in os.listdir(os.path.join(root_path,"src", "downloaded")) ]
     for f in filelist:
         os.remove(os.path.join(os.path.dirname(), os.path.join("downloaded", f)))
 
