@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file
 from werkzeug.utils import secure_filename
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
@@ -6,7 +6,8 @@ from pathlib import Path
 
 
 app = Flask(__name__)
-UPLOAD_FOLDER = "C:/Users/User/Downloads"
+# UPLOAD_FOLDER = "Downloads"
+UPLOAD_FOLDER = "downloaded"
 ALLOWED_EXTENSIONS = {'pdf'}
 secret_key = os.urandom(12).hex()
 app.config['SECRET_KEY'] = secret_key
@@ -16,8 +17,14 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+root_path = Path.home()
+
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
+    filelist = [ f for f in os.listdir(os.path.join(root_path, "downloaded")) ]
+    for f in filelist:
+        os.remove(os.path.join(os.path.dirname(), os.path.join("downloaded", f)))
+
     if request.method == 'POST':
         # Check if user has uploaded a file
         if 'file' not in request.files:
@@ -37,8 +44,13 @@ def upload_file():
                 pdf_writer.addPage(big_pdf.getPage(i))
                 
                 # CREATE BLANK PDF IN DOWNLOADS FOLDER, THEN SET IT AS OUTPUT FILE
-                with Path(os.path.join(Path.home(), f"Downloads", f"page {i+1}.pdf")).open(mode="wb") as output_file:
+                # not accessing the actual Downloads path
+                    # instead it's getting app/Downloads...
+                            
+                with Path(os.path.join(os.path.dirname(), f"downloaded", f"page {i+1}.pdf")).open(mode="wb") as output_file:
                     pdf_writer.write(output_file)
+
+                send_file(f"page {i+1}.pdf", as_attachment=True)
                     
             return redirect(url_for('upload_file'))
     return render_template('split.html')
