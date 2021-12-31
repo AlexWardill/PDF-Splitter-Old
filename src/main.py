@@ -22,9 +22,9 @@ print(root_path)
 
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
-    filelist = [ f for f in os.listdir(os.path.join(root_path, "downloaded")) if not f.endswith(".txt") ]
+    filelist = [ f for f in os.listdir(os.path.join(root_path, "src", "downloaded")) if not f.endswith(".txt") ]
     for f in filelist:
-        os.remove(os.path.join(root_path, "downloaded", f"{f}" ))
+        os.remove(os.path.join(root_path, "src", "downloaded", f"{f}" ))
 
     if request.method == 'POST':
         # Check if user has uploaded a file
@@ -51,7 +51,7 @@ def upload_file():
                 # WHY IS THIS NOT JOINING TO DOWNLOADED
                 # No such file or directory: '/app/src/page 1.pdf'
                 # but I've not even specified src anywhere, so why is it still trying to join
-                with Path(Path.home(), "downloaded", f"page {i+1}.pdf").open(mode="wb+") as output_file:
+                with Path(Path.home(), "src", "downloaded", f"page {i+1}.pdf").open(mode="wb+") as output_file:
                     pdf_writer.write(output_file)
 
                 send_file(f"page {i+1}.pdf", as_attachment=True)
