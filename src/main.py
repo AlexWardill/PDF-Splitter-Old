@@ -54,7 +54,7 @@ def upload_file():
                 with Path(os.path.join(Path.home(), "src", "downloaded", f"page {i+1}.pdf")).open(mode="wb+") as output_file:
                     pdf_writer.write(output_file)
 
-                send_file(os.path.join(Path.home(), "src", "downloaded", f"page {i+1}.pdf")), as_attachment=True)
+                send_file((os.path.join(Path.home(), "src", "downloaded", f"page {i+1}.pdf")), as_attachment=True)
                     
             return redirect(url_for('upload_file'))
     return render_template('split.html')
