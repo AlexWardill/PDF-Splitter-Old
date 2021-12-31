@@ -18,6 +18,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 root_path = Path.home()
+print(root_path)
 
 @app.route("/", methods=["GET", "POST"])
 def upload_file():
@@ -49,7 +50,7 @@ def upload_file():
 
                 # WHY IS THIS NOT JOINING TO DOWNLOADED
                 # No such file or directory: '/app/src/page 1.pdf'
-                # ...but I've literally joined it to "downloaded" so why is it trying to open there...
+                # but I've not even specified src anywhere, so why is it still trying to join
                 with Path(Path.home(), "downloaded", f"page {i+1}.pdf").open(mode="wb+") as output_file:
                     pdf_writer.write(output_file)
 
